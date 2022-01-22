@@ -141,12 +141,13 @@ export async function doSignup(email, password) {
 }
 
 export async function doLogin(email, password) {
+  console.log('asdfasdf')
   const auth = getAuth();
   signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    console.log('logged in as ' + user);
+    console.log('logged in');
     // ...
   })
   .catch((error) => {

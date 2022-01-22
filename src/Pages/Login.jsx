@@ -40,11 +40,11 @@ const Login = () => {
               placeholder="Password"
             />
           </div>
-          <Link to="/marketplace">
+          <div>
             <button className="submit-btn" type="submit">
               Login
             </button>
-          </Link>
+          </div>
         </form>
       </div>
       <Link to="/">
