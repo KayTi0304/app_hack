@@ -1,12 +1,8 @@
-import { useLocation } from "react-router-dom";
-
-const EditProfile = () => {
-  const { state } = useLocation();
-  const { name } = state;
+const EditProfile = ({ user }) => {
   return (
     <div>
       <h1>Edit Profile</h1>
-      <p>{name}</p>
+      <p>{user.name}</p>
     </div>
   );
 };

@@ -3,10 +3,8 @@ import { useState, useContext } from "react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { doSignup } from "../Backend.jsx";
-import UserProfile from "../Store/user";
 
-const Signup = () => {
-  const user = useContext(UserProfile);
+const Signup = (props) => {
   const [checkedF, setCheckedF] = useState(false);
   const [checkedM, setCheckedM] = useState(false);
   const [checkedR, setCheckedR] = useState(false);
@@ -31,10 +29,20 @@ const Signup = () => {
     e.preventDefault();
     doSignup(emailInputRef, passInputRef);
     console.log("submit");
-    user.changeName(e.target.name.value);
-    user.changePassword(e.target.password.value);
-    user.changeDesc(e.target.description.value);
-    console.log(user.name);
+
+    const emailData = emailInputRef.current.value;
+    const passwordData = passInputRef.current.value;
+    const nameData = nameInputRef.current.value;
+    const descData = descInputRef.current.value;
+
+    const curUser = {
+      email: emailData,
+      password: passwordData,
+      name: nameData,
+      desc: descData,
+    };
+
+    props.onCurUser(curUser);
   };
 
   return (
