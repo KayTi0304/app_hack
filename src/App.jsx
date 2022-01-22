@@ -19,6 +19,7 @@ function App() {
       name: curUser.name,
       desc: curUser.desc,
       products: curUser.products,
+      Ustatus: curUser.Ustatus,
     };
 
     setCurUser(user);
