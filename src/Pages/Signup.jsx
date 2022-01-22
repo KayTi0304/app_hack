@@ -43,6 +43,7 @@ const Signup = (props) => {
     };
 
     props.onCurUser(curUser);
+    console.log(curUser);
   };
 
   return (
