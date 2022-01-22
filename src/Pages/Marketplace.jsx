@@ -1,12 +1,21 @@
+import "./Marketplace.css";
+
 const Marketplace = () => {
   return (
     <div>
       <h1>Marketplace</h1>
-      <div>
-        <button>Farmers</button>
-        <button>Manufacturers</button>
-        <button>Restaurants</button>
-      </div>
+      <section className="nav-bar">
+        <button className="btn-market">Farmers</button>
+        <button className="btn-market">Manufacturers</button>
+        <button className="btn-market">Restaurants</button>
+      </section>
+      <section>
+        <div className="cardprop">
+          <p>Company name</p>
+          <p>Description</p>
+          <p>Products</p>
+        </div>
+      </section>
     </div>
   );
 };

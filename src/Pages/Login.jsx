@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   const emailInputRef = useRef();
-  const nameInputRef = useRef();
+  const passInputRef = useRef();
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -28,14 +28,14 @@ const Login = () => {
             />
           </div>
           <div className="form-con">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="password">Password</label>
             <input
               type="text"
               required
-              name="name"
-              id="name"
-              ref={nameInputRef}
-              placeholder="Name"
+              name="password"
+              id="password"
+              ref={passInputRef}
+              placeholder="Password"
             />
           </div>
           <Link to="/marketplace">

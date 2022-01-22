@@ -10,6 +10,7 @@ const Signup = () => {
   const emailInputRef = useRef();
   const descInputRef = useRef();
   const nameInputRef = useRef();
+  const passInputRef = useRef();
 
   const handleChangeF = () => {
     setCheckedF(!checkedF);
@@ -34,6 +35,17 @@ const Signup = () => {
       <div>
         <form className="form-c" onSubmit={handleOnSubmit}>
           <div className="form-con">
+            <label htmlFor="name">Company/Individual Name</label>
+            <input
+              type="text"
+              required
+              name="name"
+              id="name"
+              ref={nameInputRef}
+              placeholder="Company/Individual Name"
+            />
+          </div>
+          <div className="form-con">
             <label htmlFor="email">Email</label>
             <input
               type="text"
@@ -45,14 +57,14 @@ const Signup = () => {
             />
           </div>
           <div className="form-con">
-            <label htmlFor="name">Company/Individual Name</label>
+            <label htmlFor="password">Password</label>
             <input
               type="text"
               required
-              name="name"
-              id="name"
-              ref={nameInputRef}
-              placeholder="Company/Individual Name"
+              name="password"
+              id="password"
+              ref={passInputRef}
+              placeholder="Password"
             />
           </div>
           <div className="form-con">

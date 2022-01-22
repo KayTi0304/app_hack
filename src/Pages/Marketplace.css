@@ -1,0 +1,26 @@
+.nav-bar {
+    background-color: black;
+    justify-content: space-evenly;
+}
+
+button:hover {
+    background-color: rgb(179, 228, 46);
+    color: rgb(12, 35, 39);
+}
+
+.btn-market {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    border: none;
+    background-color: rgb(12, 35, 39);
+    color: rgb(179, 228, 46);
+    border-radius: 1rem;
+    font-size: 1.5rem;
+}
+
+.cardprop {
+    margin-top: 2rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    background-color: pink;
+}
