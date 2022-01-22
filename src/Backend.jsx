@@ -92,6 +92,13 @@ export async function getEntity(document, name) {
   return docSnap.data()
 }
 
+export async function getEntityByEmail(email) {
+  const querySnapshot = await db.collectionGroup('landmarks').where('email', '==', email).get();
+  querySnapshot.forEach((doc) => {
+    console.log(doc.id, ' => ', doc.data());
+  });
+}
+
 async function dummygetdb() {
   // const dbRef = collection(db, 'example');
   // const citySnapshot = await getDocs(dbRef);
@@ -141,13 +148,14 @@ export async function doSignup(email, password) {
 }
 
 export async function doLogin(email, password) {
-  console.log('asdfasdf')
   const auth = getAuth();
   signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
     console.log('logged in');
+    console.log(user.email)
+    return user.email
     // ...
   })
   .catch((error) => {

@@ -1,7 +1,7 @@
 import "./Login.css";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { doLogin } from "../Backend.jsx";
+import { doLogin,getEntityByEmail } from "../Backend.jsx";
 
 const Login = ({ onStateChanger }) => {
   const emailInputRef = useRef();
@@ -10,7 +10,15 @@ const Login = ({ onStateChanger }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log("submit");
-    doLogin(emailInputRef.current.value, passInputRef.current.value);
+    var userEmail=doLogin(emailInputRef.current.value, passInputRef.current.value);
+    console.log(userEmail)
+    var curUserData=getEntityByEmail(userEmail)
+    const curUser = {
+      email: userEmail,
+      name: curUserData.name,
+      desc: curUserData.description,
+      products: curUserData.products,
+    };
     onStateChanger();
   };
 
