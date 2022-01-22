@@ -4,8 +4,8 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-//import { getFirestore, collection, getDocs, addDoc, setDoc, deleteDoc, doc } from 'firebase/firestore';
-import * as firestore from 'firebase/firestore'
+import { getFirestore, collection, getDocs, getDoc, addDoc, setDoc, deleteDoc, doc } from 'firebase/firestore';
+//import * as firestore from 'firebase/firestore'
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -25,7 +25,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = firestore.getFirestore(app);
+const db = getFirestore(app);
 const analytics = getAnalytics(app);
 
 // const dbRef = app.database().ref();
@@ -35,7 +35,7 @@ const analytics = getAnalytics(app);
 // Firestore
 //
 export async function writeFarmerEntry(farmerName, email, description, products) {
-  await firestore.setDoc(firestore.doc(db, "farmer", farmerName), {
+  await setDoc(doc(db, "farmer", farmerName), {
     name: farmerName,
     email: email,
     description: description,
@@ -43,7 +43,7 @@ export async function writeFarmerEntry(farmerName, email, description, products)
   });
 } // writeFarmerEntry("foo", "foobar@gmail.com", "endless cornfields until you hate it forever", ["corn", "whatever"])
 export async function writeManufacturerEntry(manufacturerName, email, description, products, ingredients) {
-  await firestore.setDoc(firestore.doc(db, "manufacturer", manufacturerName), {
+  await setDoc(doc(db, "manufacturer", manufacturerName), {
     name: manufacturerName,
     email: email,
     description: description,
@@ -52,7 +52,7 @@ export async function writeManufacturerEntry(manufacturerName, email, descriptio
   });
 }
 export async function writeRestaurantEntry(restaurantName, email, description, ingredients) {
-  await firestore.setDoc(firestore.doc(db, "restaurant", restaurantName), {
+  await setDoc(doc(db, "restaurant", restaurantName), {
     name: restaurantName,
     email: email,
     description: description,
@@ -60,7 +60,36 @@ export async function writeRestaurantEntry(restaurantName, email, description, i
   });
 }
 export async function deleteEntry(document, name) {
-  await firestore.deleteDoc(firestore.doc(db, document, name));
+  await deleteDoc(doc(db, document, name));
+}
+
+// TODO non functional
+export async function getFarmers() {
+  const querySnapshot = await getDocs(collection(db, "farmer"));
+  
+  querySnapshot.forEach((doc) => {
+    console.log(`${doc.id} => ${doc.data()}`);
+    console.log(doc.data().email)
+  });
+
+  return
+}
+// need funcs for:
+// pair entity with category of entity
+// queries single entity
+// delete entry
+export async function getEntity(document, name) {
+  const docRef = doc(db, document, name);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+  }
+
+  return docSnap.data()
 }
 
 async function dummygetdb() {
