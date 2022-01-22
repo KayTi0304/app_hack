@@ -1,6 +1,9 @@
 import "./Marketplace.css";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react/cjs/react.development";
+import { db } from "../firebase-config";
+import { collection, getDocs } from "firebase/firestore";
 
 const farmers_data = [
   {
@@ -79,6 +82,19 @@ const restaurants_data = [
 
 const Marketplace = () => {
   const navigate = useNavigate();
+  const usersCollectionRef = collection(db, "farmer");
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      await getDocs(usersCollectionRef).then((data) => {
+        setUsers(data.docs.map((doc) => ({ ...doc.data() })));
+        console.log(users);
+      });
+    };
+
+    getUsers();
+  }, []);
 
   const [farmerB, setFarmerB] = useState(true);
   const [manuB, setManuB] = useState(false);
@@ -119,7 +135,7 @@ const Marketplace = () => {
       <section>
         <ul className="ulmarket">
           {farmerB ? (
-            farmers_data.map((farmer) => (
+            users.map((farmer) => (
               <div className="cardprop">
                 <p>Email: {farmer.email}</p>
                 <p>Name: {farmer.name}</p>
