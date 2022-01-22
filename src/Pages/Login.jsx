@@ -1,6 +1,5 @@
 import "./Login.css";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 import { doLogin } from "../Backend.jsx";
 
 const Login = ({ onStateChanger }) => {
