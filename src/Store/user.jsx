@@ -1,3 +1,5 @@
+// NO GOD PLS NO
+
 import { createContext, useState } from "react";
 
 //initialize

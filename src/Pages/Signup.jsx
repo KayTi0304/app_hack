@@ -2,7 +2,7 @@ import "./Signup.css";
 import { useState, useContext } from "react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { doSignup } from "../Backend.jsx";
+import { doSignup,writeFarmerEntry,writeManufacturerEntry,writeRestaurantEntry } from "../Backend.jsx";
 
 const Signup = (props) => {
   const [checkedF, setCheckedF] = useState(false);
@@ -27,8 +27,9 @@ const Signup = (props) => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    doSignup(emailInputRef, passInputRef);
     console.log("submit");
+
+    doSignup(emailInputRef.current.value, passInputRef.current.value);
 
     const emailData = emailInputRef.current.value;
     const passwordData = passInputRef.current.value;
@@ -43,6 +44,17 @@ const Signup = (props) => {
     };
 
     props.onCurUser(curUser);
+
+    if (checkedF) {
+      writeFarmerEntry(nameData, emailData, descData, []);
+    }
+    if (checkedM) {
+      writeManufacturerEntry(nameData, emailData, descData, [], []);
+    }
+    if (checkedR) {
+      writeRestaurantEntry(nameData, emailData, descData, []);
+    }
+
   };
 
   return (

@@ -130,6 +130,7 @@ export async function doSignup(email, password) {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
+    console.log('signed up');
     // ...
   })
   .catch((error) => {
@@ -145,6 +146,7 @@ export async function doLogin(email, password) {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
+    console.log('logged in as ' + user);
     // ...
   })
   .catch((error) => {

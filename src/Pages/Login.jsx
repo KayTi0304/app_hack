@@ -9,8 +9,8 @@ const Login = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    doLogin(emailInputRef, passInputRef)
     console.log("submit");
+    doLogin(emailInputRef.current.value, passInputRef.current.value);
   };
 
   return (
