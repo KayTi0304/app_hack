@@ -1,0 +1,10 @@
+.input1 {
+    border-radius: 1rem;
+    outline: 0;
+    border: none;
+    padding-top: 0.5rem;
+    color: burlywood;
+    background-color: rgb(44, 35, 35);
+    padding-bottom: 0.5rem;
+    text-align: center;
+}

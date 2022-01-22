@@ -54,6 +54,7 @@ const EditProfile = ({ user, onCurUser }) => {
           <div className="form-con">
             <label htmlFor="name">Company/Individual Name</label>
             <input
+              className="input1"
               type="text"
               required
               name="name"
@@ -65,6 +66,7 @@ const EditProfile = ({ user, onCurUser }) => {
           <div className="form-con">
             <label htmlFor="email">Email</label>
             <input
+              className="input1"
               type="text"
               required
               name="email"
@@ -76,6 +78,7 @@ const EditProfile = ({ user, onCurUser }) => {
           <div className="form-con">
             <label htmlFor="password">Password</label>
             <input
+              className="input1"
               type="text"
               required
               name="password"
@@ -106,30 +109,24 @@ const EditProfile = ({ user, onCurUser }) => {
               defaultValue={user.products}
             ></textarea>
           </div>
-          <label>
-            <input
-              type="checkbox"
-              checked={checkedF}
-              onChange={handleChangeF}
-            />
+          <div>
+            <input className="input2" type="radio" value="Farmer" name="user" />{" "}
             Farmer
-          </label>
-          <label>
             <input
-              type="checkbox"
-              checked={checkedM}
-              onChange={handleChangeM}
-            />
+              className="input2"
+              type="radio"
+              value="Manufacturer"
+              name="user"
+            />{" "}
             Manufacturer
-          </label>
-          <label>
             <input
-              type="checkbox"
-              checked={checkedR}
-              onChange={handleChangeR}
-            />
+              className="input2"
+              type="radio"
+              value="Restaurant"
+              name="user"
+            />{" "}
             Restaurant
-          </label>
+          </div>
           <div>
             <button className="submit-btn" type="submit">
               Submit
