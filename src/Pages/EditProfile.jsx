@@ -1,14 +1,12 @@
-import { useContext } from "react";
-import UserProfile from "../Store/user.jsx";
+import { useLocation } from "react-router-dom";
 
 const EditProfile = () => {
-  const user = useContext(UserProfile);
-  console.log(user.name);
-
+  const { state } = useLocation();
+  const { name } = state;
   return (
     <div>
       <h1>Edit Profile</h1>
-      <p>{user.name}</p>
+      <p>{name}</p>
     </div>
   );
 };

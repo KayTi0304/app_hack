@@ -1,6 +1,6 @@
 import "./Marketplace.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const farmers_data = [
   {
@@ -78,6 +78,8 @@ const restaurants_data = [
 ];
 
 const Marketplace = () => {
+  const navigate = useNavigate();
+
   const [farmerB, setFarmerB] = useState(true);
   const [manuB, setManuB] = useState(false);
   const [restB, setRestB] = useState(false);
@@ -181,8 +183,15 @@ const Marketplace = () => {
         <Link to="/">
           <button className="btn-page">Return</button>
         </Link>
-        <Link to="/edit-profile">
-          <button className="btn-page">Edit Profile</button>
+        <Link to={{ pathname: "/edit-profile", state: { name: "test" } }}>
+          <button
+            className="btn-page"
+            onClick={() => {
+              navigate("/edit-profile", { state: { name: "test" } });
+            }}
+          >
+            Edit Profile
+          </button>
         </Link>
       </div>
     </div>
