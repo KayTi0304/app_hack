@@ -1,29 +1,51 @@
 import "./Login.css";
 import { useRef } from "react";
-<<<<<<< HEAD
-import { doLogin } from "../Backend.jsx";
-=======
-import { Link } from "react-router-dom";
-import { doLogin,getEntityByEmail } from "../Backend.jsx";
->>>>>>> c97c2172868dfd5c8f07de1fe7a957ddd5618d38
+import { doLogin, getEntityByEmail } from "../Backend.jsx";
+import { db } from "../firebase-config";
+import { collection, getDocs } from "firebase/firestore";
+import { useState, useEffect } from "react/cjs/react.development";
 
 const Login = ({ onStateChanger }) => {
+  const [users, setUsers] = useState([]);
+  const usersCollectionRef = collection(db, "farmer");
   const emailInputRef = useRef();
   const passInputRef = useRef();
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log("submit");
-    var userEmail=doLogin(emailInputRef.current.value, passInputRef.current.value);
-    console.log(userEmail)
-    var curUserData=getEntityByEmail(userEmail)
-    const curUser = {
-      email: userEmail,
-      name: curUserData.name,
-      desc: curUserData.description,
-      products: curUserData.products,
+
+    const getUsers = async () => {
+      await getDocs(usersCollectionRef).then((data) => {
+        setUsers(data.docs.map((doc) => ({ ...doc.data() })));
+        console.log(users);
+
+        const arr = users.filter(
+          (user) => user.email === emailInputRef.current.value
+        );
+        console.log(arr);
+        if (arr === []) console.log("login wrong");
+        else {
+          console.log("login correct!");
+          onStateChanger();
+        }
+      });
     };
-    onStateChanger();
+
+    getUsers();
+    /*
+    console.log("submit");
+    var user_arr = [];
+    doLogin(emailInputRef.current.value, passInputRef.current.value).then(
+      () => {}
+    );
+    console.log(user_arr);
+    var end = user_arr.filter((e) => e.email === emailInputRef.current.value);
+
+    if (end === []) console.log("login unsuccessful");
+    else {
+      onStateChanger();
+      console.log(end);
+    }*/
   };
 
   return (

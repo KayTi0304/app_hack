@@ -4,10 +4,23 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, getDoc, addDoc, setDoc, deleteDoc, doc } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  getDoc,
+  addDoc,
+  setDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 //import * as firestore from 'firebase/firestore'
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,12 +33,12 @@ const firebaseConfig = {
   storageBucket: "hackapp-50a6f.appspot.com",
   messagingSenderId: "813001492442",
   appId: "1:813001492442:web:e92a0ab7351219955022e3",
-  measurementId: "G-SQ6F12RNC6"
+  measurementId: "G-SQ6F12RNC6",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 const analytics = getAnalytics(app);
 
 // const dbRef = app.database().ref();
@@ -34,29 +47,45 @@ const analytics = getAnalytics(app);
 //
 // Firestore
 //
-export async function writeFarmerEntry(farmerName, email, description, products) {
+export async function writeFarmerEntry(
+  farmerName,
+  email,
+  description,
+  products
+) {
   await setDoc(doc(db, "farmer", farmerName), {
     name: farmerName,
     email: email,
     description: description,
-    products: products
+    products: products,
   });
 } // writeFarmerEntry("foo", "foobar@gmail.com", "endless cornfields until you hate it forever", ["corn", "whatever"])
-export async function writeManufacturerEntry(manufacturerName, email, description, products, ingredients) {
+export async function writeManufacturerEntry(
+  manufacturerName,
+  email,
+  description,
+  products,
+  ingredients
+) {
   await setDoc(doc(db, "manufacturer", manufacturerName), {
     name: manufacturerName,
     email: email,
     description: description,
     products: products,
-    ingredients: ingredients
+    ingredients: ingredients,
   });
 }
-export async function writeRestaurantEntry(restaurantName, email, description, ingredients) {
+export async function writeRestaurantEntry(
+  restaurantName,
+  email,
+  description,
+  ingredients
+) {
   await setDoc(doc(db, "restaurant", restaurantName), {
     name: restaurantName,
     email: email,
     description: description,
-    ingredients: ingredients
+    ingredients: ingredients,
   });
 }
 export async function deleteEntry(document, name) {
@@ -66,13 +95,13 @@ export async function deleteEntry(document, name) {
 // TODO non functional
 export async function getFarmers() {
   const querySnapshot = await getDocs(collection(db, "farmer"));
-  
+
   querySnapshot.forEach((doc) => {
     console.log(`${doc.id} => ${doc.data()}`);
-    console.log(doc.data().email)
+    console.log(doc.data().email);
   });
 
-  return
+  return;
 }
 // need funcs for:
 // pair entity with category of entity
@@ -89,13 +118,16 @@ export async function getEntity(document, name) {
     console.log("No such document!");
   }
 
-  return docSnap.data()
+  return docSnap.data();
 }
 
 export async function getEntityByEmail(email) {
-  const querySnapshot = await db.collectionGroup('landmarks').where('email', '==', email).get();
+  const querySnapshot = await db
+    .collectionGroup("landmarks")
+    .where("email", "==", email)
+    .get();
   querySnapshot.forEach((doc) => {
-    console.log(doc.id, ' => ', doc.data());
+    console.log(doc.id, " => ", doc.data());
   });
 }
 
@@ -104,21 +136,18 @@ async function dummygetdb() {
   // const citySnapshot = await getDocs(dbRef);
   // const cityList = citySnapshot.docs.map(doc => doc.data());
   // return cityList;
-
   // ADD DATA
   // try {
-    // writes dummmy data to exampleclear
-
-    // const docRef = await addDoc(collection(db, "exampleclear"), {
-    //   first: "Ada",
-    //   last: "Lovelace",
-    //   born: 1815
-    // });
-    // console.log("Document written with ID: ", docRef.id);
+  // writes dummmy data to exampleclear
+  // const docRef = await addDoc(collection(db, "exampleclear"), {
+  //   first: "Ada",
+  //   last: "Lovelace",
+  //   born: 1815
+  // });
+  // console.log("Document written with ID: ", docRef.id);
   // } catch (e) {
   //   console.error("Error adding document: ", e);
   // }
-
   // READ DATA
   // const querySnapshot = await getDocs(collection(db, "exampleclear"));
   // querySnapshot.forEach((doc) => {
@@ -134,32 +163,46 @@ const auth = getAuth();
 
 export async function doSignup(email, password) {
   createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    console.log('signed up');
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log("signed up");
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
 }
 
 export async function doLogin(email, password) {
   const auth = getAuth();
   signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    console.log('logged in');
-    console.log(user.email)
-    return user.email
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log("logged in");
+
+      var user_data = [];
+
+      db.collection("farmer")
+        .get()
+        .then((querySnapshot) => {
+          //loop through the data and store
+          console.log(querySnapshot);
+          querySnapshot.forEach((element) => {
+            var data = element.data();
+            console.log(data);
+            user_data = [...user_data, data];
+          });
+        });
+      //console.log(user.email)
+      //return user.email
+      return user_data;
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
 }
