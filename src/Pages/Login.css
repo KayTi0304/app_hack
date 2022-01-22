@@ -1,0 +1,42 @@
+body {
+    text-align: center;
+}
+
+.loginbody {
+    align-items: center;
+}
+
+.login {
+    text-align: center;
+    font-size: 3rem;
+}
+
+.form-c {
+    align-items: center;
+    padding: 1rem;
+    margin: auto;
+}
+
+.form-con {
+    color: black;
+    display: block;
+    margin-bottom: 0.5rem;
+    background-color: burlywood;
+}
+
+.submit-btn {
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+    color: white;
+    background-color: rgb(117, 90, 50);
+    margin-top: 1rem;
+    border: none;
+    border-radius: 2cm;
+}
+
+button:hover {
+    color: rgb(117, 90, 50);
+    background-color: white;
+}
