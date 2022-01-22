@@ -2,6 +2,7 @@ import "./Signup.css";
 import { useState } from "react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { doSignup } from "../Backend.jsx";
 
 const Signup = () => {
   const [checkedF, setCheckedF] = useState(false);
@@ -26,6 +27,7 @@ const Signup = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    doSignup(emailInputRef, passInputRef)
     console.log("submit");
   };
 

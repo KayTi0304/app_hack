@@ -1,6 +1,7 @@
 import "./Login.css";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { doLogin } from "../Backend.jsx";
 
 const Login = () => {
   const emailInputRef = useRef();
@@ -8,6 +9,7 @@ const Login = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    doLogin(emailInputRef, passInputRef)
     console.log("submit");
   };
 
