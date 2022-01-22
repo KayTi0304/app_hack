@@ -1,5 +1,6 @@
 import "./Marketplace.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const farmers_data = [
   {
@@ -176,6 +177,14 @@ const Marketplace = () => {
           )}
         </ul>
       </section>
+      <div>
+        <Link to="/">
+          <button className="btn-page">Return</button>
+        </Link>
+        <Link to="/edit-profile">
+          <button className="btn-page">Edit Profile</button>
+        </Link>
+      </div>
     </div>
   );
 };

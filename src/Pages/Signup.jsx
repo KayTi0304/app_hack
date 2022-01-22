@@ -1,10 +1,12 @@
 import "./Signup.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { doSignup } from "../Backend.jsx";
+import UserProfile from "../Store/user";
 
 const Signup = () => {
+  const user = useContext(UserProfile);
   const [checkedF, setCheckedF] = useState(false);
   const [checkedM, setCheckedM] = useState(false);
   const [checkedR, setCheckedR] = useState(false);
@@ -27,8 +29,12 @@ const Signup = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    doSignup(emailInputRef, passInputRef)
+    doSignup(emailInputRef, passInputRef);
     console.log("submit");
+    user.changeName(e.target.name.value);
+    user.changePassword(e.target.password.value);
+    user.changeDesc(e.target.description.value);
+    console.log(user.name);
   };
 
   return (
