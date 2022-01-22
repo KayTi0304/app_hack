@@ -1,4 +1,5 @@
 import "./Marketplace.css";
+import { useState } from "react";
 
 const farmers_data = [
   {
@@ -24,31 +25,155 @@ const farmers_data = [
   },
 ];
 
+const manufacturers_data = [
+  {
+    email: "manu1@gmail.com",
+    password: "manu1",
+    name: "manu1",
+    description: "we make nuggets and fishballs",
+    manu_goods: ["nuggets", "fishballs"],
+    ingredients: ["chicken", "fish"],
+  },
+  {
+    email: "manu2@gmail.com",
+    password: "manu2",
+    name: "manu2",
+    description: "we make spam and bread",
+    manu_goods: ["spam", "bread"],
+    ingredients: ["pork", "wheat"],
+  },
+  {
+    email: "manu3@gmail.com",
+    password: "manu3",
+    name: "manu3",
+    description: "we make sausages and tofu",
+    manu_goods: ["sausages", "tofu"],
+    ingredients: ["beef", "soya"],
+  },
+];
+
+const restaurants_data = [
+  {
+    email: "rest1@gmail.com",
+    password: "rest1",
+    name: "rest1",
+    description: "we cook nuggets and fries",
+    ingredients: ["nuggets", "potatoes"],
+  },
+  {
+    email: "rest2@gmail.com",
+    password: "rest2",
+    name: "rest2",
+    description: "we cook spam fried rice",
+    ingredients: ["spam", "rice"],
+  },
+  {
+    email: "rest3@gmail.com",
+    password: "rest3",
+    name: "rest3",
+    description: "we cook steamed tofu and sausage pizza",
+    ingredients: ["tofu", "sausage"],
+  },
+];
+
 const Marketplace = () => {
+  const [farmerB, setFarmerB] = useState(true);
+  const [manuB, setManuB] = useState(false);
+  const [restB, setRestB] = useState(false);
+
+  const setFarmerBHandler = () => {
+    setFarmerB(true);
+    setManuB(false);
+    setRestB(false);
+  };
+
+  const setManuBHandler = () => {
+    setFarmerB(false);
+    setManuB(true);
+    setRestB(true);
+  };
+
+  const setRestBHandler = () => {
+    setFarmerB(false);
+    setManuB(false);
+    setRestB(true);
+  };
+
   return (
     <div>
       <h1>Marketplace</h1>
       <section className="nav-bar">
-        <button className="btn-market">Farmers</button>
-        <button className="btn-market">Manufacturers</button>
-        <button className="btn-market">Restaurants</button>
+        <button className="btn-market" onClick={setFarmerBHandler}>
+          Farmers
+        </button>
+        <button className="btn-market" onClick={setManuBHandler}>
+          Manufacturers
+        </button>
+        <button className="btn-market" onClick={setRestBHandler}>
+          Restaurants
+        </button>
       </section>
       <section>
         <ul className="ulmarket">
-          {farmers_data.map((farmer) => (
-            <div className="cardprop">
-              <p>{farmer.email}</p>
-              <p>{farmer.name}</p>
-              <p>{farmer.description}</p>
-              <p>
-                <div>
+          {farmerB ? (
+            farmers_data.map((farmer) => (
+              <div className="cardprop">
+                <p>Email: {farmer.email}</p>
+                <p>Name: {farmer.name}</p>
+                <p>Description: {farmer.description}</p>
+                <p>
+                  Products:
                   {farmer.products.map((product) => (
                     <text>{product} </text>
                   ))}
-                </div>
-              </p>
-            </div>
-          ))}
+                </p>
+              </div>
+            ))
+          ) : (
+            <div></div>
+          )}
+
+          {manuB ? (
+            manufacturers_data.map((manu) => (
+              <div className="cardprop">
+                <p>Email: {manu.email}</p>
+                <p>Name: {manu.name}</p>
+                <p>Description: {manu.description}</p>
+                <p>
+                  Manufactured goods:
+                  {manu.manu_goods.map((manu_good) => (
+                    <text>{manu_good} </text>
+                  ))}
+                </p>
+                <p>
+                  Products:
+                  {manu.ingredients.map((ingredient) => (
+                    <text>{ingredient} </text>
+                  ))}
+                </p>
+              </div>
+            ))
+          ) : (
+            <div></div>
+          )}
+
+          {restB ? (
+            restaurants_data.map((restaurant) => (
+              <div className="cardprop">
+                <p>Email: {restaurant.email}</p>
+                <p>Name: {restaurant.name}</p>
+                <p>Description: {restaurant.description}</p>
+                <p>
+                  Ingredients:
+                  {restaurant.ingredients.map((ingredient) => (
+                    <text>{ingredient} </text>
+                  ))}
+                </p>
+              </div>
+            ))
+          ) : (
+            <div></div>
+          )}
         </ul>
       </section>
     </div>
