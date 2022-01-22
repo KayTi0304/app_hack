@@ -18,6 +18,7 @@ function App() {
       password: curUser.password,
       name: curUser.name,
       desc: curUser.desc,
+      products: curUser.products,
     };
 
     setCurUser(user);
@@ -29,6 +30,7 @@ function App() {
       password: curUser.password,
       name: curUser.name,
       desc: curUser.desc,
+      products: curUser.products,
     };
 
     setCurUser(user);
@@ -64,19 +66,29 @@ function App() {
 
   return (
     <div>
-      <section>
+      <header>
+        <h1 className="title">Fooder App</h1>
         <ul>
           <li>
-            <button onClick={signupHandler}>SignUp</button>
-            <button onClick={loginHandler}>Login</button>
-            <button onClick={marketplaceHandler}>Marketplace</button>
-            <button onClick={editprofileHandler}>EditProfile</button>
+            <button className="navbtn" onClick={signupHandler}>
+              SignUp
+            </button>
+            <button className="navbtn" onClick={loginHandler}>
+              Login
+            </button>
+            <button className="navbtn" onClick={marketplaceHandler}>
+              Marketplace
+            </button>
+            <button className="navbtn" onClick={editprofileHandler}>
+              EditProfile
+            </button>
           </li>
         </ul>
-      </section>
+      </header>
+      <div className="navbar"></div>
       <div>
         {signUp ? <Signup onCurUser={curUserHandler} /> : <div></div>}
-        {login ? <Login /> : <div></div>}
+        {login ? <Login onStateChanger={marketplaceHandler} /> : <div></div>}
         {marketplace ? <Marketplace /> : <div></div>}
         {editprofile ? (
           <EditProfile user={curUser} onCurUser={editUserHandler} />

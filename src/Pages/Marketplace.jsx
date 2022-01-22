@@ -179,21 +179,6 @@ const Marketplace = () => {
           )}
         </ul>
       </section>
-      <div>
-        <Link to="/">
-          <button className="btn-page">Return</button>
-        </Link>
-        <Link to={{ pathname: "/edit-profile", state: { name: "test" } }}>
-          <button
-            className="btn-page"
-            onClick={() => {
-              navigate("/edit-profile", { state: { name: "test" } });
-            }}
-          >
-            Edit Profile
-          </button>
-        </Link>
-      </div>
     </div>
   );
 };

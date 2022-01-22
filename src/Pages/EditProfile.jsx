@@ -11,6 +11,7 @@ const EditProfile = ({ user, onCurUser }) => {
   const descInputRef = useRef();
   const nameInputRef = useRef();
   const passInputRef = useRef();
+  const productsInputRef = useRef();
 
   const handleChangeF = () => {
     setCheckedF(!checkedF);
@@ -32,12 +33,14 @@ const EditProfile = ({ user, onCurUser }) => {
     const passwordData = passInputRef.current.value;
     const nameData = nameInputRef.current.value;
     const descData = descInputRef.current.value;
+    const productsData = productsInputRef.current.value;
 
     const curUser = {
       email: emailData,
       password: passwordData,
       name: nameData,
       desc: descData,
+      products: productsData,
     };
 
     onCurUser(curUser);
@@ -90,6 +93,17 @@ const EditProfile = ({ user, onCurUser }) => {
               name="description"
               ref={descInputRef}
               defaultValue={user.desc}
+            ></textarea>
+          </div>
+          <div className="form-con">
+            <label htmlFor="products">Products</label>
+            <textarea
+              id="products"
+              required
+              rows="5"
+              name="products"
+              ref={productsInputRef}
+              defaultValue={user.products}
             ></textarea>
           </div>
           <label>

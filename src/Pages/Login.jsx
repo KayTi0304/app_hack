@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { doLogin } from "../Backend.jsx";
 
-const Login = () => {
+const Login = ({ onStateChanger }) => {
   const emailInputRef = useRef();
   const passInputRef = useRef();
 
@@ -11,6 +11,7 @@ const Login = () => {
     e.preventDefault();
     console.log("submit");
     doLogin(emailInputRef.current.value, passInputRef.current.value);
+    onStateChanger();
   };
 
   return (
@@ -21,6 +22,7 @@ const Login = () => {
           <div className="form-con">
             <label htmlFor="email">Email</label>
             <input
+              className="inputLog"
               type="text"
               required
               name="email"
@@ -32,6 +34,7 @@ const Login = () => {
           <div className="form-con">
             <label htmlFor="password">Password</label>
             <input
+              className="inputLog"
               type="text"
               required
               name="password"
@@ -47,11 +50,6 @@ const Login = () => {
           </div>
         </form>
       </div>
-      <Link to="/">
-        <button className="submit-btn" type="submit">
-          Return
-        </button>
-      </Link>
     </div>
   );
 };

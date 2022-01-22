@@ -2,7 +2,12 @@ import "./Signup.css";
 import { useState, useContext } from "react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { doSignup,writeFarmerEntry,writeManufacturerEntry,writeRestaurantEntry } from "../Backend.jsx";
+import {
+  doSignup,
+  writeFarmerEntry,
+  writeManufacturerEntry,
+  writeRestaurantEntry,
+} from "../Backend.jsx";
 
 const Signup = (props) => {
   const [checkedF, setCheckedF] = useState(false);
@@ -41,6 +46,7 @@ const Signup = (props) => {
       password: passwordData,
       name: nameData,
       desc: descData,
+      products: "",
     };
 
     props.onCurUser(curUser);
@@ -63,9 +69,10 @@ const Signup = (props) => {
       <h1 className="signup">Sign Up</h1>
       <div>
         <form className="form-c" onSubmit={handleOnSubmit}>
-          <div className="form-con">
+          <div className="input-container">
             <label htmlFor="name">Company/Individual Name</label>
             <input
+              className="input1"
               type="text"
               required
               name="name"
@@ -74,9 +81,10 @@ const Signup = (props) => {
               placeholder="Company/Individual Name"
             />
           </div>
-          <div className="form-con">
+          <div className="input-container">
             <label htmlFor="email">Email</label>
             <input
+              className="input1"
               type="text"
               required
               name="email"
@@ -85,9 +93,10 @@ const Signup = (props) => {
               placeholder="Email"
             />
           </div>
-          <div className="form-con">
+          <div className="input-container">
             <label htmlFor="password">Password</label>
             <input
+              className="input1"
               type="text"
               required
               name="password"
@@ -96,7 +105,7 @@ const Signup = (props) => {
               placeholder="Password"
             />
           </div>
-          <div className="form-con">
+          <div className="input-container">
             <label htmlFor="description">Description</label>
             <textarea
               id="description"
@@ -107,40 +116,29 @@ const Signup = (props) => {
               placeholder="Description"
             ></textarea>
           </div>
-          <label>
-            <input
-              type="checkbox"
-              checked={checkedF}
-              onChange={handleChangeF}
-            />
+          <div>
+            <input className="input2" type="radio" value="Farmer" name="user" />{" "}
             Farmer
-          </label>
-          <label>
             <input
-              type="checkbox"
-              checked={checkedM}
-              onChange={handleChangeM}
-            />
+              className="input2"
+              type="radio"
+              value="Manufacturer"
+              name="user"
+            />{" "}
             Manufacturer
-          </label>
-          <label>
             <input
-              type="checkbox"
-              checked={checkedR}
-              onChange={handleChangeR}
-            />
+              className="input2"
+              type="radio"
+              value="Restaurant"
+              name="user"
+            />{" "}
             Restaurant
-          </label>
+          </div>
           <div>
             <button className="submit-btn" type="submit">
               Submit
             </button>
           </div>
-          <Link to="/">
-            <button className="submit-btn" type="submit">
-              Return
-            </button>
-          </Link>
         </form>
       </div>
     </div>
