@@ -18,6 +18,10 @@ button:hover {
     font-size: 1.5rem;
 }
 
+.ulmarket {
+    list-style: none;
+}
+
 .cardprop {
     margin-top: 2rem;
     margin-left: 0.5rem;
