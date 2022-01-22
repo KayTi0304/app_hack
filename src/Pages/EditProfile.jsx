@@ -1,5 +1,11 @@
 import { useState } from "react";
 import { useRef } from "react";
+import {
+  doSignup,
+  writeFarmerEntry,
+  writeManufacturerEntry,
+  writeRestaurantEntry,
+} from "../Backend.jsx";
 
 const EditProfile = ({ user, onCurUser }) => {
   console.log(user);
@@ -44,6 +50,20 @@ const EditProfile = ({ user, onCurUser }) => {
     };
 
     onCurUser(curUser);
+
+    console.log(checkedF);
+    console.log(checkedM);
+    console.log(checkedR);
+
+    if (checkedF) {
+      writeFarmerEntry(nameData, emailData, descData, productsData.split(","));
+    }
+    if (checkedM) {
+      writeManufacturerEntry(nameData, emailData, descData, productsData.split(","), productsData.split(","));
+    }
+    if (checkedR) {
+      writeRestaurantEntry(nameData, emailData, descData, productsData.split(","));
+    }
   };
 
   return (

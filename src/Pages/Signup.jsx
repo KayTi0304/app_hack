@@ -24,6 +24,7 @@ const Signup = (props) => {
 
   const handleChangeM = () => {
     setCheckedM(!checkedM);
+    console.log(checkedM)
   };
 
   const handleChangeR = () => {
@@ -51,6 +52,10 @@ const Signup = (props) => {
 
     props.onCurUser(curUser);
 
+    console.log(checkedF);
+    console.log(checkedM);
+    console.log(checkedR);
+
     if (checkedF) {
       writeFarmerEntry(nameData, emailData, descData, []);
     }
@@ -62,6 +67,7 @@ const Signup = (props) => {
     }
 
     console.log(curUser);
+    props.onchangetab();
   };
 
   return (

@@ -87,7 +87,7 @@ function App() {
       </header>
       <div className="navbar"></div>
       <div>
-        {signUp ? <Signup onCurUser={curUserHandler} /> : <div></div>}
+        {signUp ? <Signup onCurUser={curUserHandler} onchangetab={marketplaceHandler}/> : <div></div>}
         {login ? <Login onStateChanger={marketplaceHandler} /> : <div></div>}
         {marketplace ? <Marketplace /> : <div></div>}
         {editprofile ? (
