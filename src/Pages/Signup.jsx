@@ -1,7 +1,6 @@
 import "./Signup.css";
 import { useState, useContext } from "react";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 import {
   doSignup,
   writeFarmerEntry,
@@ -18,16 +17,16 @@ const Signup = (props) => {
   const nameInputRef = useRef();
   const passInputRef = useRef();
 
-  const handleChangeF = () => {
+  const handleF = () => {
     setCheckedF(!checkedF);
   };
 
-  const handleChangeM = () => {
+  const handleM = () => {
     setCheckedM(!checkedM);
     console.log(checkedM)
   };
 
-  const handleChangeR = () => {
+  const handleR = () => {
     setCheckedR(!checkedR);
   };
 
@@ -41,6 +40,11 @@ const Signup = (props) => {
     const passwordData = passInputRef.current.value;
     const nameData = nameInputRef.current.value;
     const descData = descInputRef.current.value;
+    const Ustatus = checkedF
+      ? "Farmer"
+      : checkedM
+      ? "Manufacturer"
+      : "Restaurant";
 
     const curUser = {
       email: emailData,
@@ -48,6 +52,7 @@ const Signup = (props) => {
       name: nameData,
       desc: descData,
       products: "",
+      Ustatus: Ustatus,
     };
 
     props.onCurUser(curUser);
@@ -123,21 +128,29 @@ const Signup = (props) => {
             ></textarea>
           </div>
           <div>
-            <input className="input2" type="radio" value="Farmer" name="user" />{" "}
+            <input
+              className="input2"
+              type="radio"
+              value="Farmer"
+              name="user"
+              onChange={handleF}
+            />
             Farmer
             <input
               className="input2"
               type="radio"
               value="Manufacturer"
               name="user"
-            />{" "}
+              onChange={handleM}
+            />
             Manufacturer
             <input
               className="input2"
               type="radio"
               value="Restaurant"
               name="user"
-            />{" "}
+              onChange={handleR}
+            />
             Restaurant
           </div>
           <div>

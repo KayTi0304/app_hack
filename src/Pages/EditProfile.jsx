@@ -9,7 +9,6 @@ import {
 
 const EditProfile = ({ user, onCurUser }) => {
   console.log(user);
-
   const [checkedF, setCheckedF] = useState(false);
   const [checkedM, setCheckedM] = useState(false);
   const [checkedR, setCheckedR] = useState(false);
@@ -18,18 +17,6 @@ const EditProfile = ({ user, onCurUser }) => {
   const nameInputRef = useRef();
   const passInputRef = useRef();
   const productsInputRef = useRef();
-
-  const handleChangeF = () => {
-    setCheckedF(!checkedF);
-  };
-
-  const handleChangeM = () => {
-    setCheckedM(!checkedM);
-  };
-
-  const handleChangeR = () => {
-    setCheckedR(!checkedR);
-  };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -47,6 +34,7 @@ const EditProfile = ({ user, onCurUser }) => {
       name: nameData,
       desc: descData,
       products: productsData,
+      Ustatus: user.Ustatus,
     };
 
     onCurUser(curUser);
@@ -128,24 +116,6 @@ const EditProfile = ({ user, onCurUser }) => {
               ref={productsInputRef}
               defaultValue={user.products}
             ></textarea>
-          </div>
-          <div>
-            <input className="input2" type="radio" value="Farmer" name="user" />{" "}
-            Farmer
-            <input
-              className="input2"
-              type="radio"
-              value="Manufacturer"
-              name="user"
-            />{" "}
-            Manufacturer
-            <input
-              className="input2"
-              type="radio"
-              value="Restaurant"
-              name="user"
-            />{" "}
-            Restaurant
           </div>
           <div>
             <button className="submit-btn" type="submit">
