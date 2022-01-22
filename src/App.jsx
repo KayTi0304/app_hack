@@ -23,6 +23,17 @@ function App() {
     setCurUser(user);
   };
 
+  const editUserHandler = (curUser) => {
+    const user = {
+      email: curUser.email,
+      password: curUser.password,
+      name: curUser.name,
+      desc: curUser.desc,
+    };
+
+    setCurUser(user);
+  };
+
   const signupHandler = () => {
     setSignUp(true);
     setLogin(false);
@@ -67,7 +78,11 @@ function App() {
         {signUp ? <Signup onCurUser={curUserHandler} /> : <div></div>}
         {login ? <Login /> : <div></div>}
         {marketplace ? <Marketplace /> : <div></div>}
-        {editprofile ? <EditProfile user={curUser} /> : <div></div>}
+        {editprofile ? (
+          <EditProfile user={curUser} onCurUser={editUserHandler} />
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

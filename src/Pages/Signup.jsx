@@ -55,6 +55,7 @@ const Signup = (props) => {
       writeRestaurantEntry(nameData, emailData, descData, []);
     }
 
+    console.log(curUser);
   };
 
   return (
