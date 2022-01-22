@@ -60,7 +60,7 @@ const EditProfile = ({ user, onCurUser }) => {
               name="name"
               id="name"
               ref={nameInputRef}
-              value={user.name}
+              defaultValue={user.name}
             />
           </div>
           <div className="form-con">
@@ -72,7 +72,7 @@ const EditProfile = ({ user, onCurUser }) => {
               name="email"
               id="email"
               ref={emailInputRef}
-              value={user.email}
+              defaultValue={user.email}
             />
           </div>
           <div className="form-con">
@@ -84,7 +84,7 @@ const EditProfile = ({ user, onCurUser }) => {
               name="password"
               id="password"
               ref={passInputRef}
-              value={user.password}
+              defaultValue={user.password}
             />
           </div>
           <div className="form-con">
